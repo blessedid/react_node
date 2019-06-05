@@ -24,7 +24,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/default.html"
+      template: "./src/default.html",
+      filename: 'default.html',
+      base: "https://example.com/path/page.html"
     })
   ]
 };

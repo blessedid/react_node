@@ -17,7 +17,7 @@ export class Tables extends Component {
         () => this.tick(),
         1000
       );
-      axios.get('http://localhost:8888/books')
+      axios.get('http://localhost:8888/books.get')
         .then(res => {
           this.setState({ books: res.data });
       });
@@ -44,7 +44,10 @@ export class Tables extends Component {
               title: 'Авторы',
               key: 'authors',
               dataIndex: 'authors',
-              render: authors => authors.map(authors => authors.name).join(', '),
+            render: authors => authors.map(authors => {
+              //console.log("<a href='/author/" + authors._id+"'>"+authors.name+"</a>" );
+                return <a href={'/author-' + authors._id}>{authors.name} </a>
+              }),
             },
             {
               title: 'Дата',

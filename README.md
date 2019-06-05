@@ -1,4 +1,21 @@
 # Тестовое приложение
+## Инструкция
+* Идем в файл `server/utils/DataBaseUtil.js` и изменяем на свои параметры для соединения с MongoDB
+```js
+export function setUpConnection() {
+    mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true});
+}
+```
+> К сожалению базу придется заполнять в ручную
+* В папке `public` уже лежит вполне рабочий проект.
+```sh
+$ npm run start
+$ npm run build
+```
+* Запускаем NodeJS сервер командой
+```sh
+$ start_server
+```
 ## Технологии
 - JavaScript
 - [NodeJS](https://nodejs.org) - evented I/O for the backend
@@ -14,3 +31,7 @@
 ## Dev
 - [Webpack](https://webpack.js.org) - JavaScript module bundler
 - [Babel](https://babeljs.io) - the compiler for next generation JavaScript
+## Эпилог
+* Ни о какаой либо безопсности проекта не стоит даже заикаться
+* Некоторые моменты хотелось бы исправить и сделать более лаконичными
+* В планах добавить компонент для добавления книг и авторов

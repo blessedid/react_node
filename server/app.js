@@ -11,21 +11,29 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 db.setUpConnection();
 
-app.get('/',  (req, res) =>
-  res.sendfile('public/index.html')
-);
-
-app.get('/books',  (req, res) =>
+app.get('/books.get',  (req, res) => {
   db.getBooks().then( data => res.send(data) )
-);
+});
 
-app.post('/books',  (req, res) =>
+app.post('/books.post',  (req, res) =>
   db.addBooks(req.body).then( data => res.send(data) )
 );
 
 app.delete('/books/:id',  (req, res) =>
   db.deleteBooks(req.params.id).then( data => res.send(data) )
 );
+
+app.get('/authors.get',  (req, res) => {
+  if(req.query.id){
+    db.getAuthorById(req.query.id).then( data => res.send(data) )
+  }else{
+    db.getAuthors().then( data => res.send(data) )
+  }
+});
+
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(__dirname+'/../public/default.html'));
+});
 
 app.use((req, res, next) =>
   next(createError(404))
