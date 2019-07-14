@@ -15,12 +15,18 @@ module.exports = {
         use: {
           loader: "babel-loader"
         },
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      template: "./src/default.html",
+      filename: 'default.html',
+      base: "https://example.com/path/page.html"
     })
   ]
 };
